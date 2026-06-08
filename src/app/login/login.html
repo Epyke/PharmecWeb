@@ -1,0 +1,58 @@
+<div class="login-container">
+  
+  <div class="login-banner">
+    <div class="banner-overlay">
+      <h1 class="banner-logo">Pharmec</h1>
+      <p class="banner-subtitle">A PLATAFORMA QUE SIMPLIFICA<br>A GESTÃO DO SEU STOCK</p>
+    </div>
+  </div>
+
+  <div class="login-form-container">
+    <div class="login-card">
+      
+      <div class="form-header">
+        <h2>Bem-vindo</h2>
+        <p>Introduza as suas credenciais para aceder ao sistema.</p>
+      </div>
+
+      <form (ngSubmit)="handleLogin()">
+        
+        <div class="input-group">
+          <label>Utilizador ou E-mail</label>
+          <input 
+            type="text" 
+            name="username" 
+            [(ngModel)]="username" 
+            placeholder="exemplo@pharmec.pt"
+            autocomplete="username">
+        </div>
+
+        <div class="input-group">
+          <label>Palavra-passe</label>
+          <input 
+            type="password" 
+            name="password" 
+            [(ngModel)]="password" 
+            placeholder="••••••••"
+            autocomplete="current-password">
+        </div>
+
+        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="remember" name="rememberMe" [(ngModel)]="rememberMe">
+          <label id="checkboxLabel" for="remember">Manter sessão iniciada</label>
+        </div>
+
+        <button type="submit" class="btn-login">Iniciar sessão</button>
+
+      </form>
+
+      <div class="login-footer">
+        <p>© 2026 Pharmec. Todos os direitos reservados.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

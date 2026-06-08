@@ -1,0 +1,166 @@
+/* Layout Geral 50/50 */
+.login-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+}
+
+/* Lado Esquerdo - Banner */
+.login-banner {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #eef9f3 0%, #d1fae5 100%);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Conteúdo de texto por cima do Banner */
+.banner-overlay {
+  text-align: center;
+  padding: 20px;
+}
+
+.banner-logo {
+  font-size: 64px;
+  font-weight: 800;
+  color: #008a3d;
+  margin: 0 0 20px 0;
+  letter-spacing: -1px;
+}
+
+.banner-subtitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #008a3d;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+
+/* Lado Direito - Formulário */
+.login-form-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+}
+
+.form-header p {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 0 30px 0;
+}
+
+/* Grupos de Inputs */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  height: 45px;
+  background-color: #f4f5f7;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0 15px;
+  font-size: 14px;
+  color: #1a1a1a;
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #008a3d;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 138, 61, 0.1);
+}
+
+/* Checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #008a3d;
+  cursor: pointer;
+}
+
+#checkboxLabel {
+  font-size: 13px;
+  color: #666666;
+  margin-left: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Mensagem de Erro */
+.error-message {
+  color: #d32f2f;
+  font-size: 13px;
+  font-weight: 700;
+  margin: -10px 0 15px 0;
+}
+
+/* Botão Principal */
+.btn-login {
+  width: 100%;
+  height: 45px;
+  background-color: #008a3d;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-login:hover {
+  background-color: #006e30;
+}
+
+/* Rodapé */
+.login-footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.login-footer p {
+  font-size: 11px;
+  color: #999999;
+}
