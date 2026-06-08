@@ -1,0 +1,208 @@
+/* Layout Base (Igual ao Dashboard) */
+.dashboard-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8fafc;
+}
+
+.sidebar {
+  width: 260px;
+  background-color: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-brand {
+  padding: 24px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar-brand h2 {
+  margin: 0;
+  color: #008a3d;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.sidebar-brand h2 span {
+  color: #008a3d;
+}
+
+.sidebar-menu {
+  flex: 1;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  color: #64748b;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menu-item .icon {
+  margin-right: 12px;
+  font-size: 16px;
+}
+
+.menu-item:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+.menu-item.active {
+  background-color: #eef9f3;
+  color: #008a3d;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.topbar {
+  background-color: #ffffff;
+  padding: 20px 40px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar h1 {
+  margin: 0 0 4px 0;
+  font-size: 24px;
+  color: #0f172a;
+}
+
+.current-date {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.panel-body {
+  padding: 40px;
+}
+
+/* --- Estilos Específicos da Página de Empregados --- */
+
+.btn-primary {
+  background-color: #008a3d;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #006e30;
+}
+
+.loading-state, .empty-state {
+  text-align: center;
+  color: #64748b;
+  padding: 40px;
+  font-size: 15px;
+}
+
+.table-container {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.pharmec-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pharmec-table th, .pharmec-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+  color: #1e293b;
+}
+
+.pharmec-table th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pharmec-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.pharmec-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.fw-bold {
+  font-weight: 600;
+}
+
+/* Badge de Estado */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: #fee2e2; /* Vermelho claro */
+  color: #ef4444; /* Vermelho escuro */
+}
+
+.status-badge.active {
+  background-color: #eef9f3; /* Verde claro */
+  color: #008a3d; /* Verde escuro */
+}
+
+/* Botões de Ação na Tabela */
+.actions-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}

@@ -1,0 +1,70 @@
+<div class="dashboard-layout">
+  <main class="main-content" style="width: 100%;">
+    
+    <header class="topbar form-header">
+      <div class="topbar-left">
+        <h1>Registar Novo Empregado</h1>
+        <p class="current-date">Preencha os dados pessoais e de acesso</p>
+      </div>
+      <div class="topbar-right">
+        <button class="btn-secondary" routerLink="/empregados">← Voltar</button>
+        <button class="btn-primary" (click)="guardar()">Guardar Empregado</button> 
+      </div>
+    </header>
+
+    <div class="panel-body">
+      <div class="form-card">
+        
+        <form class="pharmec-form" [formGroup]="empregadoForm">
+          
+          <h3 class="section-title">Dados de Acesso</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="username">Username *</label>
+              <input type="text" id="username" name="username" class="form-control" formControlName="username" placeholder="Ex: joao.silva">
+            </div>
+            <div class="form-group">
+              <label for="password">Password *</label>
+              <input type="password" id="password" name="password" class="form-control" formControlName="password" placeholder="Definir password inicial">
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" class="form-control" formControlName="email" placeholder="joao@pharmec.pt">
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone</label>
+              <input type="text" id="telefone" name="telefone" class="form-control" formControlName="telefone" placeholder="910000000">
+            </div>
+          </div>
+
+          <hr class="divider">
+
+          <h3 class="section-title">Dados Pessoais e Cargo</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="nome">Nome Completo *</label>
+              <input type="text" id="nome" name="nome" class="form-control" formControlName="nome" placeholder="Nome do funcionário">
+            </div>
+            <div class="form-group">
+              <label for="nif">NIF *</label>
+              <input type="text" id="nif" name="nif" class="form-control" formControlName="nif" placeholder="Ex: 210000000">
+            </div>
+            <div class="form-group">
+              <label for="cc">Cartão de Cidadão *</label>
+              <input type="text" id="cc" name="cc" class="form-control" formControlName="cc" placeholder="Número do CC">
+            </div>
+            <div class="form-group">
+              <label for="idCargo">Cargo *</label>
+              <select id="idCargo" name="idCargo" class="form-control" formControlName="idCargo">
+                <option value="">Selecione o cargo...</option>
+                <option value="1">Diretor Técnico</option>
+                <option value="2">Farmacêutico</option>
+              </select>
+            </div>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </main>
+</div>

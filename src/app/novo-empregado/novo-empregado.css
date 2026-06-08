@@ -1,0 +1,150 @@
+/* Layout Base (Igual ao Dashboard/Empregados) */
+.dashboard-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8fafc;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.topbar {
+  background-color: #ffffff;
+  padding: 20px 40px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar h1 {
+  margin: 0 0 4px 0;
+  font-size: 24px;
+  color: #0f172a;
+}
+
+.current-date {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.topbar-right {
+  display: flex;
+  gap: 12px;
+}
+
+.panel-body {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Botões --- */
+.btn-primary {
+  background-color: #008a3d;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #006e30;
+}
+
+.btn-secondary {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+/* --- Formulário --- */
+.form-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 32px;
+  width: 100%;
+  max-width: 800px; /* Limita a largura para não ficar muito esticado */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  color: #008a3d;
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #eef9f3;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas */
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: span 2; /* Ocupa a linha toda */
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1e293b;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #008a3d;
+  box-shadow: 0 0 0 3px rgba(0, 138, 61, 0.1);
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 30px 0;
+}
