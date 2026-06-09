@@ -1,0 +1,70 @@
+<div class="dashboard-layout">
+  
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <h2><span>P</span>harmec</h2>
+    </div>
+    <nav class="sidebar-menu">
+      <a routerLink="/dashboard" class="menu-item"><span class="icon">📊</span> Dashboard</a>
+      <a routerLink="/empregados" class="menu-item active"><span class="icon">👥</span> Empregados</a>
+      <a class="menu-item"><span class="icon">📄</span> Relatórios</a>
+      <a class="menu-item"><span class="icon">📈</span> Gráficos Vendas</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>Gestão de Empregados</h1>
+        <p class="current-date">Gerencie os acessos e perfis da sua equipa</p>
+      </div>
+      <div class="topbar-right">
+        <button class="btn-primary" routerLink="/empregados/novo">+ Novo Empregado</button>
+      </div>
+    </header>
+
+    <div class="panel-body">
+      
+      <div *ngIf="carregando" class="loading-state">
+        <p>A carregar dados dos funcionários...</p>
+      </div>
+
+      <div class="table-container" *ngIf="!carregando">
+        <table class="pharmec-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Estado</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of listaEmpregados">
+              <td>#{{ emp.idFuncionario || emp.id }}</td>
+              <td class="fw-bold">{{ emp.nome }}</td>
+              <td>{{ emp.username || emp.idutilizador?.username || 'N/A' }}</td>
+              <td>{{ emp.email || emp.idutilizador?.email || 'N/A' }}</td>
+              <td>
+                <span class="status-badge" [class.active]="emp.ativo !== false">
+                  {{ emp.ativo !== false ? 'Ativo' : 'Inativo' }}
+                </span>
+              </td>
+              <td class="actions-cell">
+                <button class="btn-icon edit">✏️</button>
+                <button class="btn-icon delete">🗑️</button>
+              </td>
+            </tr>
+            
+            <tr *ngIf="listaEmpregados.length === 0">
+              <td colspan="6" class="text-center empty-state">Nenhum funcionário encontrado.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+</div>
