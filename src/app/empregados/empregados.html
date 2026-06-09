@@ -1,16 +1,6 @@
 <div class="dashboard-layout">
-  
-  <aside class="sidebar">
-    <div class="sidebar-brand">
-      <h2><span>P</span>harmec</h2>
-    </div>
-    <nav class="sidebar-menu">
-      <a routerLink="/dashboard" class="menu-item"><span class="icon">📊</span> Dashboard</a>
-      <a routerLink="/empregados" class="menu-item active"><span class="icon">👥</span> Empregados</a>
-      <a class="menu-item"><span class="icon">📄</span> Relatórios</a>
-      <a class="menu-item"><span class="icon">📈</span> Gráficos Vendas</a>
-    </nav>
-  </aside>
+
+  <app-sidebar></app-sidebar>
 
   <main class="main-content">
     <header class="topbar">
@@ -51,10 +41,12 @@
                 <span class="status-badge" [class.active]="emp.ativo !== false">
                   {{ emp.ativo !== false ? 'Ativo' : 'Inativo' }}
                 </span>
-              </td>
               <td class="actions-cell">
-                <button class="btn-icon edit">✏️</button>
-                <button class="btn-icon delete">🗑️</button>
+                <button class="btn-icon edit" routerLink="/empregados/editar/{{ emp.idFuncionario || emp.id }}">✏️</button>
+                
+                <button *ngIf="emp.ativo !== false" class="btn-icon delete" (click)="apagar(emp.idFuncionario || emp.id, emp.nome)">🗑️</button>
+
+                <button *ngIf="emp.ativo === false" class="btn-icon restore" (click)="reativar(emp.idFuncionario || emp.id, emp.nome)" title="Reativar Empregado">♻️</button>
               </td>
             </tr>
             

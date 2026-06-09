@@ -1,0 +1,16 @@
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <h2><span>P</span>harmec</h2>
+  </div>
+  
+  <nav class="sidebar-menu">
+    <a routerLink="/dashboard" class="menu-item"><span class="icon">📊</span> Dashboard</a>
+    <a routerLink="/empregados" class="menu-item"><span class="icon">👥</span> Empregados</a>
+    <a class="menu-item"><span class="icon">📄</span> Relatórios</a>
+    <a class="menu-item"><span class="icon">📈</span> Gráficos Vendas</a>
+  </nav>
+  
+  <div class="sidebar-footer">
+    <a (click)="logout()" style="cursor: pointer;" class="menu-item logout"><span class="icon">🚪</span> Sair</a>
+  </div>
+</aside>

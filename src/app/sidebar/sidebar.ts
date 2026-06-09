@@ -5,7 +5,7 @@ import { RouterModule, Router } from '@angular/router';
 @Component({
   selector: 'app-sidebar', 
   standalone: true,
-  imports: [CommonModule, RouterModule], 
+  imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css'
 })
@@ -13,9 +13,9 @@ export class SidebarComponent {
 
   constructor(private router: Router) {}
 
-  // A nossa função global de Sair
+  // A função que o botão "Sair" vai chamar
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    localStorage.removeItem('token'); // Apaga o token
+    this.router.navigate(['/login']); // Vai para o login
   }
 }

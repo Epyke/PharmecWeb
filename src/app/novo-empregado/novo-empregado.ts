@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmpregadosService } from '../services/empregados'; 
 
@@ -14,10 +14,13 @@ import { EmpregadosService } from '../services/empregados';
 export class NovoEmpregadoComponent implements OnInit {
   
   empregadoForm!: FormGroup;
+  modoEdicao: boolean = false; 
+  idParaEditar: number | null = null;
 
   constructor(
     private fb: FormBuilder, 
     private router: Router,
+    private route: ActivatedRoute,
     private empregadosService: EmpregadosService 
   ) {}
 
@@ -36,6 +39,30 @@ export class NovoEmpregadoComponent implements OnInit {
       cc: ['', Validators.required],
       idCargo: ['', Validators.required]
     });
+
+    // --- NOVA PARTE: LER A URL PARA VER SE É EDIÇÃO ---
+    const paramId = this.route.snapshot.paramMap.get('id');
+    
+    if (paramId) {
+      this.modoEdicao = true;
+      this.idParaEditar = Number(paramId);
+
+      // No modo edição, a password não é obrigatória (só preenche se quiser mudar)
+      this.empregadoForm.get('password')?.clearValidators();
+      this.empregadoForm.get('password')?.updateValueAndValidity();
+
+      // Pede ao Java os dados deste empregado
+      this.empregadosService.obterEmpregadoPorId(this.idParaEditar).subscribe({
+        next: (dados) => {
+          // Preenche magicamente as caixas de texto com os dados que vieram do Java
+          this.empregadoForm.patchValue(dados);
+        },
+        error: (erro) => {
+          alert("Erro ao carregar os dados do empregado.");
+          this.router.navigate(['/empregados']);
+        }
+      });
+    }
   }
 
   // 2. Função chamada quando clicamos no botão "Guardar"
@@ -51,16 +78,34 @@ export class NovoEmpregadoComponent implements OnInit {
     // Se estiver tudo bem, pega nos dados
     const dadosFormulario = this.empregadoForm.value;
     
-    // 3. Envia para o Java usando o nosso Serviço
-    this.empregadosService.criarEmpregado(dadosFormulario).subscribe({
-      next: (resposta) => {
-        alert("Empregado registado com sucesso!");
-        this.router.navigate(['/empregados']); 
-      },
-      error: (erro) => {
-        // Se der erro, mostramos uma mensagem clara
-        alert("Não foi possível registar o empregado. Verifique se os dados (como o Username ou NIF) já não estão a ser utilizados.");
-      }
-    });
+    // --- DECISÃO: ATUALIZAR OU CRIAR? ---
+    if (this.modoEdicao && this.idParaEditar) {
+      
+      // 3A. Envia para o Java ATUALIZAR usando o nosso Serviço
+      this.empregadosService.atualizarEmpregado(this.idParaEditar, dadosFormulario).subscribe({
+        next: () => {
+          alert("Empregado atualizado com sucesso!");
+          this.router.navigate(['/empregados']);
+        },
+        error: (erro) => {
+          alert("Não foi possível atualizar. Verifique se os dados estão corretos.");
+        }
+      });
+
+    } else {
+
+      // 3B. Envia para o Java CRIAR usando o nosso Serviço
+      this.empregadosService.criarEmpregado(dadosFormulario).subscribe({
+        next: (resposta) => {
+          alert("Empregado registado com sucesso!");
+          this.router.navigate(['/empregados']); 
+        },
+        error: (erro) => {
+          // Se der erro, mostramos uma mensagem clara
+          alert("Não foi possível registar o empregado. Verifique se os dados (como o Username ou NIF) já não estão a ser utilizados.");
+        }
+      });
+      
+    }
   }
 }

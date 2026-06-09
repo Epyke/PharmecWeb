@@ -1,3 +1,4 @@
+/* --- Layout Base --- */
 .dashboard-layout {
   display: flex;
   width: 100vw;
@@ -7,80 +8,6 @@
   background-color: #f8fafc;
 }
 
-/* Barra Lateral */
-.sidebar {
-  width: 260px;
-  background-color: #ffffff;
-  border-right: 1px solid #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.sidebar-brand {
-  padding: 24px;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.sidebar-brand h2 {
-  margin: 0;
-  color: #008a3d;
-  font-size: 26px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
-
-.sidebar-brand h2 span {
-  color: #008a3d;
-}
-
-.sidebar-menu {
-  flex: 1;
-  padding: 20px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.menu-item {
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
-  color: #64748b;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.menu-item .icon {
-  margin-right: 12px;
-  font-size: 16px;
-}
-
-.menu-item:hover {
-  background-color: #f1f5f9;
-  color: #1e293b;
-}
-
-.menu-item.active {
-  background-color: #eef9f3;
-  color: #008a3d;
-}
-
-.sidebar-footer {
-  padding: 12px;
-  border-top: 1px solid #f1f5f9;
-}
-
-.menu-item.logout:hover {
-  background-color: #fee2e2;
-  color: #ef4444;
-}
-
-/* Área Central */
 .main-content {
   flex: 1;
   display: flex;
@@ -89,7 +16,6 @@
   overflow-y: auto;
 }
 
-/* Topbar */
 .topbar {
   background-color: #ffffff;
   padding: 20px 40px;
@@ -99,7 +25,7 @@
   align-items: center;
 }
 
-.topbar left h1 {
+.topbar h1 {
   margin: 0 0 4px 0;
   font-size: 24px;
   color: #0f172a;
@@ -111,42 +37,33 @@
   color: #64748b;
 }
 
-.user-badge {
-  font-size: 14px;
-  font-weight: 700;
-  color: #008a3d;
-  background-color: #eef9f3;
-  padding: 8px 16px;
-  border-radius: 20px;
-}
-
-/* Corpo do Painel */
 .panel-body {
   padding: 40px;
 }
 
-/* Grelha de Cartões */
+/* --- Estilos Específicos do Dashboard (Cartões e Grelha) --- */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 24px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
 .stat-card {
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
   padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border-left: 4px solid transparent;
 }
 
-.stat-card.border-green { border-left: 4px solid #008a3d; }
-.stat-card.border-orange { border-left: 4px solid #f59e0b; }
-.stat-card.border-blue { border-left: 4px solid #3b82f6; }
+/* Cores das bordas laterais dos cartões */
+.border-green { border-left-color: #10b981; }
+.border-orange { border-left-color: #f59e0b; }
+.border-blue { border-left-color: #3b82f6; }
 
 .card-info {
   display: flex;
@@ -154,11 +71,11 @@
 }
 
 .card-subtitle {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 13px;
   color: #64748b;
-  text-transform: uppercase;
   margin-bottom: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .card-title {
@@ -167,32 +84,33 @@
   color: #0f172a;
 }
 
+/* Badges (Etiquetas) coloridas */
 .badge {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 8px;
-  border-radius: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
-.badge-green { background-color: #eef9f3; color: #008a3d; }
-.badge-orange { background-color: #fffbeb; color: #b45309; }
-.badge-blue { background-color: #eff6ff; color: #1d4ed8; }
+.badge-green { background-color: #d1fae5; color: #059669; }
+.badge-orange { background-color: #fef3c7; color: #d97706; }
+.badge-blue { background-color: #dbeafe; color: #2563eb; }
 
+/* Caixa de Informação inferior */
 .dashboard-info-box {
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
   padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
 }
 
 .dashboard-info-box h3 {
-  margin: 0 0 12px 0;
+  margin-top: 0;
   color: #0f172a;
 }
 
 .dashboard-info-box p {
-  margin: 0;
   color: #64748b;
   line-height: 1.6;
-  font-size: 14px;
+  margin-bottom: 0;
 }
