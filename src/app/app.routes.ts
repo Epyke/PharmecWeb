@@ -4,11 +4,13 @@ import { DashboardComponent } from './dashboard/dashboard';
 import { EmpregadosComponent } from './empregados/empregados';
 import { NovoEmpregadoComponent } from './novo-empregado/novo-empregado';
 
+
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'empregados', component: EmpregadosComponent },
-  { path: 'empregados/novo', component: NovoEmpregadoComponent }
+  { path: 'empregados/novo', component: NovoEmpregadoComponent },
+  { path: 'empregados/editar/:id', component: NovoEmpregadoComponent },
 
 ];
