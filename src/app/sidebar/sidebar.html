@@ -6,11 +6,11 @@
   <nav class="sidebar-menu">
     <a routerLink="/dashboard" class="menu-item"> Dashboard</a>
     <a routerLink="/empregados" class="menu-item"> Empregados</a>
-    <a class="menu-item"> Relatórios</a>
-    <a class="menu-item"> Gráficos Vendas</a>
+    <a routerLink="/relatorios" class="menu-item"> Relatórios</a>
+    <a routerLink="/graficos-vendas" class="menu-item"> Gráficos Vendas</a>
   </nav>
   
   <div class="sidebar-footer">
-    <a (click)="logout()" style="cursor: pointer;" class="menu-item logout"><span class="icon">🚪</span> Sair</a>
+    <a (click)="logout()" style="cursor: pointer;" class="menu-item logout"> Sair</a>
   </div>
 </aside>

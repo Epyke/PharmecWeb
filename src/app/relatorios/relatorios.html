@@ -1,1 +1,82 @@
-<p>relatorios works!</p>
+<div class="dashboard-layout">
+  <div class="main-content">
+    
+    <div class="topbar no-print">
+      <div>
+        <h1>Relatórios</h1>
+        <p class="current-date">Gere relatórios detalhados para contabilidade e análise</p>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      
+      <div class="filter-bar no-print">
+        <div class="filter-group">
+          <label>Tipo de Relatório</label>
+          <select [(ngModel)]="tipoRelatorio" class="form-control">
+            <option value="vendas-mensais">Total de Vendas</option>
+            <option value="top-produtos">Top Produtos Mais Vendidos</option>
+            <option value="vendas-funcionarios">Vendas por Funcionário</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Data Início</label>
+          <input type="date" [(ngModel)]="dataInicio" class="form-control">
+        </div>
+
+        <div class="filter-group">
+          <label>Data Fim</label>
+          <input type="date" [(ngModel)]="dataFim" class="form-control">
+        </div>
+
+        <div class="filter-actions">
+          <button class="btn-primary" (click)="gerarRelatorio()">Gerar</button>
+          <button class="btn-secondary" *ngIf="relatorioGerado" (click)="exportarPDF()">PDF</button>
+        </div>
+      </div>
+
+      <div class="empty-state no-print" *ngIf="!relatorioGerado">
+        <p>Selecione os filtros acima e clique em "Gerar" para visualizar os dados.</p>
+      </div>
+
+      <div id="area-relatorio" *ngIf="relatorioGerado">
+        
+        <div class="print-header">
+          <h2>Pharmec - Relatório Oficial</h2>
+          <p>
+            Período: {{ dataInicio ? (dataInicio | date:'dd/MM/yyyy') : 'Todo o tempo' }} 
+            a {{ dataFim ? (dataFim | date:'dd/MM/yyyy') : 'Todo o tempo' }}
+          </p>
+          <hr>
+        </div>
+
+        <div class="report-section">
+          <h3>
+            <span *ngIf="tipoRelatorio === 'vendas-mensais'">Relatório de Vendas</span>
+            <span *ngIf="tipoRelatorio === 'top-produtos'">Relatório de Top Produtos</span>
+            <span *ngIf="tipoRelatorio === 'vendas-funcionarios'">Relatório de Vendas por Funcionário</span>
+          </h3>
+          
+          <table class="pharmec-table">
+            <thead>
+              <tr>
+                <th *ngFor="let col of colunas">{{ col }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let linha of dados">
+                <td>{{ linha.col1 }}</td>
+                <td>{{ linha.col2 }}</td>
+                <td>{{ linha.col3 }}</td>
+                <td>{{ linha.col4 }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
