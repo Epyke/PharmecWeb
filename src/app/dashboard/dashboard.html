@@ -7,7 +7,7 @@
     <header class="topbar">
       <div class="topbar-left">
         <h1>Painel de Controlo</h1>
-        <p class="current-date">Terça-feira, 2 de Junho 2026</p>
+        <p class="current-date">{{ dataAtual }}</p> 
       </div>
       <div class="topbar-right">
         <span class="user-badge">Bem-vindo, {{ userName }}</span>
@@ -21,7 +21,7 @@
         <div class="stat-card border-green">
           <div class="card-info">
             <span class="card-subtitle">Vendas Diárias</span>
-            <span class="card-title">{{ vendasDiarias }} €</span>
+            <span class="card-title">{{ vendasDiarias }} </span>
           </div>
           <span class="badge badge-green">Hoje</span>
         </div>
