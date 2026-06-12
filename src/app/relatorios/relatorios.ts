@@ -17,6 +17,7 @@ export class RelatoriosComponent {
   tipoRelatorio: string = 'vendas-mensais';
   dataInicio: string = '';
   dataFim: string = '';
+  maxTodayDate: string = new Date().toISOString().split('T')[0];
 
   colunas: string[] = [];
   dados: any[] = [];

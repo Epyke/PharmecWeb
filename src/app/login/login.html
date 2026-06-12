@@ -37,7 +37,9 @@
             autocomplete="current-password">
         </div>
 
-        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+        @if (errorMessage) {
+          <p class="error-message">{{ errorMessage }}</p>
+        }
 
         <div class="checkbox-group">
           <input type="checkbox" id="remember" name="rememberMe" [(ngModel)]="rememberMe">
