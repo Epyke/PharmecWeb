@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router'; 
@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService, 
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(credenciais, this.rememberMe).subscribe({
       next: (resposta) => {
-        console.log('Login com sucesso!', resposta);
+        console.log('Login com sucesso', resposta);
         
         this.router.navigate(['/dashboard']).then(() => {
           if (this.router.url.includes('acesso_negado')) {
@@ -61,6 +62,7 @@ export class LoginComponent implements OnInit {
         } else {
           this.errorMessage = 'Erro ao contactar o servidor. Tente novamente.';
         }
+        this.cdr.detectChanges();
       }
     });
   }
