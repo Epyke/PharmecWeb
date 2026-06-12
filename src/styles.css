@@ -1,0 +1,21 @@
+@media print {
+  /* Esconde a Sidebar e o botão de imprimir durante a impressão */
+  app-sidebar, 
+  .btn-exportar, /* Substitui pelo nome da classe do teu botão de PDF */
+  button {
+    display: none !important;
+  }
+
+  /* Garante que o conteúdo do relatório estica para ocupar a página */
+  .relatorio-container { /* Nome da classe que envolve a tua tabela */
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Ajuste estético para a tabela não sair cortada no papel */
+  table {
+    width: 100% !important;
+    border-collapse: collapse;
+  }
+}
