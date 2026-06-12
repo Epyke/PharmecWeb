@@ -5,16 +5,17 @@ import { EmpregadosComponent } from './empregados/empregados';
 import { NovoEmpregadoComponent } from './novo-empregado/novo-empregado';
 import { RelatoriosComponent } from './relatorios/relatorios';
 import { GraficosVendasComponent } from './graficos-vendas/graficos-vendas';
+import { roleGuard } from './guards/role-guard';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'empregados', component: EmpregadosComponent },
-  { path: 'empregados/novo', component: NovoEmpregadoComponent },
-  { path: 'empregados/editar/:id', component: NovoEmpregadoComponent },
-  { path: 'relatorios', component: RelatoriosComponent },
-  { path: 'graficos-vendas', component: GraficosVendasComponent }
+  { path: 'login', component: LoginComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [roleGuard] },
+  { path: 'empregados', component: EmpregadosComponent, canActivate: [roleGuard] },
+  { path: 'empregados/novo', component: NovoEmpregadoComponent, canActivate: [roleGuard] },
+  { path: 'empregados/editar/:id', component: NovoEmpregadoComponent, canActivate: [roleGuard] },
+  { path: 'relatorios', component: RelatoriosComponent, canActivate: [roleGuard] },
+  { path: 'graficos-vendas', component: GraficosVendasComponent, canActivate: [roleGuard] },
 
 ];

@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar';
 import { DashboardService } from '../services/dashboard'; 
 
-
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -14,21 +13,28 @@ import { DashboardService } from '../services/dashboard';
 })
 export class DashboardComponent implements OnInit {
   
-  // Dados do Cabeçalho
-  userName = 'Diretora Técnica'; 
+  // 1. Variáveis do Cabeçalho
+  userName: string = ''; 
   dataAtual: string = '';
   
-  // Inicializamos as variáveis a zero/vazio antes de o Java responder
+  // 2. Variáveis dos Gráficos e Estatísticas
   vendasDiarias = '0,00';
   reservasPendentes = 0;
   encomendasPendentes = 0;
 
-  // Injetamos o nosso novo serviço no construtor
-  constructor(private dashboardService: DashboardService,
-              private cdr: ChangeDetectorRef
+  constructor(
+    private dashboardService: DashboardService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
+    //Vai buscar o nome gravado no login (ou usa 'Utilizador' se não encontrar)
+    let nomeGuardado = localStorage.getItem('username') || sessionStorage.getItem('username') || 'Utilizador';
+    
+    //Coloca a primeira letra em maiúscula (ex: "ana" -> "Ana")
+    this.userName = nomeGuardado.charAt(0).toUpperCase() + nomeGuardado.slice(1);
+
+    //Trata da data e dos dados do Java
     this.gerarDataAtual();
     this.carregarDadosDoBackend();
   }
@@ -37,7 +43,6 @@ export class DashboardComponent implements OnInit {
   carregarDadosDoBackend() {
     this.dashboardService.getStats().subscribe({
       next: (dadosReal) => {
-        // Atribuição das variáveis
         this.vendasDiarias = dadosReal.vendasHoje || '0,00';
         this.reservasPendentes = dadosReal.reservasPendentes;
         this.encomendasPendentes = dadosReal.encomendasPendentes;
@@ -61,9 +66,5 @@ export class DashboardComponent implements OnInit {
     dataExtenso = dataExtenso.replace(/\b([a-z])/g, char => char.toUpperCase());
 
     this.dataAtual = `${diaSemana}, ${dataExtenso}`;
-  }
-
-  handleSair() {
-    console.log('A terminar sessão...');
   }
 }

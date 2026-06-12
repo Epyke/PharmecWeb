@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router'; 
+import { Router, ActivatedRoute } from '@angular/router'; 
 import { AuthService } from '../services/auth'; 
 
 @Component({
@@ -11,14 +11,25 @@ import { AuthService } from '../services/auth';
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit { 
   username = '';
   password = '';
   rememberMe = false;
   errorMessage = '';
 
-  // O Angular "injeta" as ferramentas que precisamos aqui no construtor
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params['erro'] === 'acesso_negado') {
+        this.errorMessage = 'Acesso Negado: O seu cargo não tem permissão para aceder à plataforma.';
+      }
+    });
+  }
 
   handleLogin() {
     this.errorMessage = '';
@@ -33,11 +44,15 @@ export class LoginComponent {
       password: this.password
     };
 
-    // Chamamos o serviço de autenticação para falar com o IntelliJ
-    this.authService.login(credenciais).subscribe({
+    this.authService.login(credenciais, this.rememberMe).subscribe({
       next: (resposta) => {
         console.log('Login com sucesso!', resposta);
-        this.router.navigate(['/dashboard']); //Salta para o dashboard!
+        
+        this.router.navigate(['/dashboard']).then(() => {
+          if (this.router.url.includes('acesso_negado')) {
+            this.errorMessage = 'Acesso Negado: O seu cargo não tem permissão para aceder à plataforma.';
+          }
+        });
       },
       error: (erro) => {
         console.error('Erro no login:', erro);
