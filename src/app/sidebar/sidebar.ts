@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router'; 
+import { AuthService } from '../services/auth'; // 
 
 @Component({
   selector: 'app-sidebar', 
@@ -11,11 +12,12 @@ import { RouterModule, Router } from '@angular/router';
 })
 export class SidebarComponent {
 
-  constructor(private router: Router) {}
+  // 2. Injetar o AuthService
+  constructor(private router: Router, private authService: AuthService) {}
 
   // A função que o botão "Sair" vai chamar
   logout() {
-    localStorage.removeItem('token'); // Apaga o token
+    this.authService.logout(); // Apaga o jwt_token, refresh_token e idcargo!
     this.router.navigate(['/login']); // Vai para o login
   }
 }
