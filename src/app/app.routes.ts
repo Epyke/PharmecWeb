@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard';
 import { EmpregadosComponent } from './empregados/empregados';
 import { NovoEmpregadoComponent } from './novo-empregado/novo-empregado';
 import { RelatoriosComponent } from './relatorios/relatorios';
+import { GraficosVendasComponent } from './graficos-vendas/graficos-vendas';
 
 
 export const routes: Routes = [
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'empregados/novo', component: NovoEmpregadoComponent },
   { path: 'empregados/editar/:id', component: NovoEmpregadoComponent },
   { path: 'relatorios', component: RelatoriosComponent },
+  { path: 'graficos-vendas', component: GraficosVendasComponent }
 
 ];

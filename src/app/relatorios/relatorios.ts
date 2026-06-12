@@ -1,14 +1,16 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { RelatoriosService } from '../services/relatorios';
+import { SidebarComponent } from '../sidebar/sidebar';
 
 @Component({
   selector: 'app-relatorios',
   standalone: true,
-  imports: [CommonModule, FormsModule], 
+  imports: [CommonModule, FormsModule, RouterModule, SidebarComponent], 
   templateUrl: './relatorios.html',
-  styleUrl: './relatorios.css'
+  styleUrl: './relatorios.css',
 })
 export class RelatoriosComponent {
   
@@ -22,8 +24,10 @@ export class RelatoriosComponent {
 
   // Injeta o serviço aqui no construtor
   constructor(private relatoriosService: RelatoriosService,
-              private cdr: ChangeDetectorRef
+              private cdr: ChangeDetectorRef,
+              private router: Router
   ) {}
+
 
   gerarRelatorio() {
     
@@ -57,5 +61,10 @@ export class RelatoriosComponent {
 
   exportarPDF() {
     window.print();
+  }
+
+  logout() {
+    localStorage.removeItem('token'); // Limpa a sessão
+    this.router.navigate(['/login']); // Atira o utilizador para a página inicial
   }
 }

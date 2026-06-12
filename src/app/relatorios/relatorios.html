@@ -1,15 +1,17 @@
 <div class="dashboard-layout">
-  <div class="main-content">
-    
-    <div class="topbar no-print">
-      <div>
+
+  <app-sidebar></app-sidebar>
+
+  <main class="main-content">
+    <header class="topbar no-print">
+      <div class="topbar-left">
         <h1>Relatórios</h1>
         <p class="current-date">Gere relatórios detalhados para contabilidade e análise</p>
       </div>
-    </div>
+    </header>
 
     <div class="panel-body">
-      
+
       <div class="filter-bar no-print">
         <div class="filter-group">
           <label>Tipo de Relatório</label>
@@ -41,11 +43,11 @@
       </div>
 
       <div id="area-relatorio" *ngIf="relatorioGerado">
-        
+
         <div class="print-header">
           <h2>Pharmec - Relatório Oficial</h2>
           <p>
-            Período: {{ dataInicio ? (dataInicio | date:'dd/MM/yyyy') : 'Todo o tempo' }} 
+            Período: {{ dataInicio ? (dataInicio | date:'dd/MM/yyyy') : 'Todo o tempo' }}
             a {{ dataFim ? (dataFim | date:'dd/MM/yyyy') : 'Todo o tempo' }}
           </p>
           <hr>
@@ -57,7 +59,7 @@
             <span *ngIf="tipoRelatorio === 'top-produtos'">Relatório de Top Produtos</span>
             <span *ngIf="tipoRelatorio === 'vendas-funcionarios'">Relatório de Vendas por Funcionário</span>
           </h3>
-          
+
           <table class="pharmec-table">
             <thead>
               <tr>
@@ -78,5 +80,5 @@
       </div>
 
     </div>
-  </div>
+  </main>
 </div>
