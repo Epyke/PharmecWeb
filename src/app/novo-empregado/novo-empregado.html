@@ -8,7 +8,7 @@
       </div>
       <div class="topbar-right">
         <button class="btn-secondary" routerLink="/empregados">Voltar</button>
-        <button class="btn-primary" (click)="guardar()">Guardar Empregado</button> 
+        <button class="btn-primary" (click)="guardar()" [disabled]="empregadoForm.invalid">Guardar Empregado</button> 
       </div>
     </header>
 
@@ -20,20 +20,47 @@
           <h3 class="section-title">Dados de Acesso</h3>
           <div class="form-grid">
             <div class="form-group">
-              <label for="username">Username *</label>
-              <input type="text" id="username" name="username" class="form-control" formControlName="username" placeholder="Ex: joao.silva">
+              <label for="username">Nome de utilizador *</label>
+              <input type="text" 
+                id="username" 
+                name="username" 
+                class="form-control" 
+                formControlName="username" 
+                placeholder="Ex: joao.silva" 
+                [class.invalid]="empregadoForm.get('username')?.invalid && (empregadoForm.get('username')?.touched || empregadoForm.get('username')?.dirty)">
+                <span class="error-message" *ngIf="empregadoForm.get('username')?.hasError('required') && (empregadoForm.get('username')?.touched || empregadoForm.get('username')?.dirty)">Este campo é obrigatório</span>
+                <span class="error-message" *ngIf="empregadoForm.get('username')?.hasError('pattern') && (empregadoForm.get('username')?.touched || empregadoForm.get('username')?.dirty)">O nome de utilizador não pode conter espaços</span>
             </div>
             <div class="form-group">
-              <label for="password">Password *</label>
-              <input type="password" id="password" name="password" class="form-control" formControlName="password" placeholder="Definir password inicial">
+              <label for="password">Senha *</label>
+              <input type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Definir senha inicial"
+              [class.invalid]="empregadoForm.get('password')?.invalid && (empregadoForm.get('password')?.touched || empregadoForm.get('password')?.dirty)">
+              <span class="error-message" *ngIf="empregadoForm.get('password')?.hasError('required') && (empregadoForm.get('password')?.touched || empregadoForm.get('password')?.dirty)">Este campo é obrigatório</span>
+              @if(empregadoForm.get('password')?.hasError('minlength') && (empregadoForm.get('password')?.touched || empregadoForm.get('password')?.dirty)){
+                <span class="error-message">A senha tem de ter no minimo 6 caracteres</span>
+              } @else if(empregadoForm.get('password')?.hasError('pattern') && (empregadoForm.get('password')?.touched || empregadoForm.get('password')?.dirty)){
+                <span class="error-message">A senha deve conter uma letra, um digito e um caractere especial</span>
+              }
+              
             </div>
             <div class="form-group">
               <label for="email">Email *</label>
-              <input type="email" id="email" name="email" class="form-control" formControlName="email" placeholder="joao@pharmec.pt">
+              <input type="email" id="email" name="email" class="form-control" formControlName="email" placeholder="joao@pharmec.pt"
+              [class.invalid]="empregadoForm.get('email')?.invalid && (empregadoForm.get('email')?.touched || empregadoForm.get('email')?.dirty)">
+              <span class="error-message" *ngIf="empregadoForm.get('email')?.hasError('required') && (empregadoForm.get('email')?.touched || empregadoForm.get('email')?.dirty)">Este campo é obrigatório</span>
+              <span class="error-message" *ngIf="empregadoForm.get('email')?.hasError('email') && (empregadoForm.get('email')?.touched || empregadoForm.get('email')?.dirty)">Formato de email inválido</span>
             </div>
             <div class="form-group">
               <label for="telefone">Telefone</label>
-              <input type="text" id="telefone" name="telefone" class="form-control" formControlName="telefone" placeholder="910000000">
+              <input type="text" id="telefone" name="telefone" class="form-control" formControlName="telefone" placeholder="910200200">
+              @if((empregadoForm.get('telefone')?.hasError('minlength') || empregadoForm.get('telefone')?.hasError('maxlength')) && (empregadoForm.get('telefone')?.touched || empregadoForm.get('telefone')?.dirty)){
+                <span class="error-message">Número de telefone inválido</span>
+              }
             </div>
           </div>
 
@@ -43,23 +70,40 @@
           <div class="form-grid">
             <div class="form-group full-width">
               <label for="nome">Nome Completo *</label>
-              <input type="text" id="nome" name="nome" class="form-control" formControlName="nome" placeholder="Nome do funcionário">
+              <input type="text" id="nome" name="nome" class="form-control" formControlName="nome" placeholder="Nome do funcionário"
+              [class.invalid]="empregadoForm.get('nome')?.invalid && (empregadoForm.get('nome')?.touched || empregadoForm.get('nome')?.dirty)">
+              <span class="error-message" *ngIf="empregadoForm.get('nome')?.hasError('required') && (empregadoForm.get('nome')?.touched || empregadoForm.get('nome')?.dirty)">Este campo é obrigatório</span>
+              <span class="error-message" *ngIf="empregadoForm.get('nome')?.hasError('pattern') && (empregadoForm.get('nome')?.touched || empregadoForm.get('nome')?.dirty)">O nome não pode conter digitos nem caracteres especiais</span>
             </div>
             <div class="form-group">
               <label for="nif">NIF *</label>
-              <input type="text" id="nif" name="nif" class="form-control" formControlName="nif" placeholder="Ex: 210000000">
+              <input type="text" id="nif" name="nif" class="form-control" formControlName="nif" placeholder="Ex: 210000000"
+              [class.invalid]="empregadoForm.get('nif')?.invalid && (empregadoForm.get('nif')?.touched || empregadoForm.get('nif')?.dirty)">
+              <span class="error-message" *ngIf="empregadoForm.get('nif')?.hasError('required') && (empregadoForm.get('nif')?.touched || empregadoForm.get('nif')?.dirty)">Este campo é obrigatório</span>
+              @if((empregadoForm.get('nif')?.hasError('minlength') || empregadoForm.get('nif')?.hasError('maxlength')) && (empregadoForm.get('nif')?.touched || empregadoForm.get('nif')?.dirty)){
+                <span class="error-message">O nif tem de ter 9 digitos</span>
+              }
             </div>
             <div class="form-group">
               <label for="cc">Cartão de Cidadão *</label>
-              <input type="text" id="cc" name="cc" class="form-control" formControlName="cc" placeholder="Número do CC">
+              <input type="text" id="cc" name="cc" class="form-control" formControlName="cc" placeholder="Número do CC"
+              [class.invalid]="empregadoForm.get('cc')?.invalid && (empregadoForm.get('cc')?.touched || empregadoForm.get('cc')?.dirty)">
+              <span class="error-message" *ngIf="empregadoForm.get('cc')?.hasError('required') && (empregadoForm.get('cc')?.touched || empregadoForm.get('cc')?.dirty)">Este campo é obrigatório</span>
+              @if (empregadoForm.get('cc')?.hasError('pattern') && (empregadoForm.get('cc')?.touched || empregadoForm.get('cc')?.dirty)) {
+                <span class="error-message">O número de identidade deve conter apenas entre 7 a 8 dígitos.</span>
+              }
             </div>
             <div class="form-group">
               <label for="idCargo">Cargo *</label>
-              <select id="idCargo" name="idCargo" class="form-control" formControlName="idCargo">
+              <select id="idCargo" name="idCargo" class="form-control" formControlName="idCargo"
+              [class.invalid]="empregadoForm.get('idCargo')?.invalid && (empregadoForm.get('idCargo')?.touched || empregadoForm.get('idCargo')?.dirty)">
                 <option value="">Selecione o cargo...</option>
                 <option value="1">Diretor Técnico</option>
                 <option value="2">Farmacêutico</option>
               </select>
+              @if (empregadoForm.get('idCargo')?.hasError('required') && (empregadoForm.get('idCargo')?.touched || empregadoForm.get('idCargo')?.dirty)) {
+                <span class="error-message">Selecione um cargo para o funcionário</span>
+              }
             </div>
           </div>
         </form>

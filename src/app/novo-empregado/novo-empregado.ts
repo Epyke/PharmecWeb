@@ -22,25 +22,23 @@ export class NovoEmpregadoComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private empregadosService: EmpregadosService 
-  ) {}
-
-  ngOnInit() {
-    // 1. Criar a estrutura e as regras do formulário
+  ) {
     this.empregadoForm = this.fb.group({
       // Dados do Utilizador
-      username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]], 
+      username: ['', [Validators.required, Validators.pattern(/^\S*$/)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).*$/)]], 
       email: ['', [Validators.required, Validators.email]],
-      telefone: [''], 
+      telefone: ['', [Validators.minLength(9), Validators.maxLength(9)]], 
       
       // Dados do Funcionário
-      nome: ['', Validators.required],
+      nome: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ ]*$/)]],
       nif: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
-      cc: ['', Validators.required],
+      cc: ['', [Validators.required, Validators.pattern(/^[0-9]{7,8}$/)]],
       idCargo: ['', Validators.required]
     });
+  }
 
-    // --- NOVA PARTE: LER A URL PARA VER SE É EDIÇÃO ---
+  ngOnInit() {
     const paramId = this.route.snapshot.paramMap.get('id');
     
     if (paramId) {
