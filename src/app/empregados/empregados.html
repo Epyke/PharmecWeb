@@ -42,12 +42,17 @@
                   {{ emp.ativo !== false ? 'Ativo' : 'Inativo' }}
                 </span>
               <td class="actions-cell">
-                <button class="btn-icon edit" routerLink="/empregados/editar/{{ emp.idFuncionario || emp.id }}">✏️</button>
+                <button class="btn-icon edit" routerLink="/empregados/editar/{{ emp.idFuncionario || emp.id }}" title="Editar Empregado">
+                  <img src="icons/pen.svg" alt="Editar">
+                </button>
                 
-                <button *ngIf="emp.ativo !== false" class="btn-icon delete" (click)="apagar(emp.idFuncionario || emp.id, emp.nome)">🗑️</button>
+                <button *ngIf="emp.ativo !== false" class="btn-icon delete" (click)="apagar(emp.idFuncionario || emp.id, emp.nome)" title="Excluir Empregado">
+                  <img src="icons/trash.svg" alt="Excluir">
+                </button>
 
-                <button *ngIf="emp.ativo === false" class="btn-icon restore" (click)="reativar(emp.idFuncionario || emp.id, emp.nome)" title="Reativar Empregado">♻️</button>
-              </td>
+                <button *ngIf="emp.ativo === false" class="btn-icon restore" (click)="reativar(emp.idFuncionario || emp.id, emp.nome)" title="Reativar Empregado">
+                  <img src="icons/recycle.svg" alt="Reativar">
+                </button>
             </tr>
             
             <tr *ngIf="listaEmpregados.length === 0">

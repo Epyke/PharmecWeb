@@ -29,7 +29,7 @@
 
         <div class="filter-group">
           <label>Data Fim</label>
-          <input type="date" [(ngModel)]="dataFim" class="form-control">
+          <input type="date" [(ngModel)]="dataFim" class="form-control" [max]="maxTodayDate">
         </div>
 
         <div class="filter-actions">

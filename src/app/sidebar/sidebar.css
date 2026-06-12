@@ -71,3 +71,9 @@
   background-color: #fee2e2;
   color: #ef4444;
 }
+
+.title{
+  width: 200px; 
+  height: auto;
+  object-fit: contain;
+}
