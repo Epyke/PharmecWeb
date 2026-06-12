@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GraficosService } from '../services/graficos';
+import { SidebarComponent } from '../sidebar/sidebar';
 import { Router, RouterModule } from '@angular/router';
 import Chart from 'chart.js/auto'; // 
 
 @Component({
   selector: 'app-graficos-vendas',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, SidebarComponent],
   templateUrl: './graficos-vendas.html',
   styleUrl: './graficos-vendas.css'
 })

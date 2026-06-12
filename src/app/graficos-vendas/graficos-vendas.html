@@ -1,31 +1,34 @@
-
-
-<div class="graficos-container">
+<div class="dashboard-layout">
   
-  <div class="topbar">
-    <div>
-      <h1>Dashboard Financeiro</h1>
-      <p class="current-date">Análise visual de vendas e receitas</p>
-    </div>
-  </div>
+  <app-sidebar></app-sidebar>
 
-  <div class="panel-body">
-    <div class="charts-grid">
-      
-      <div class="chart-card">
-        <h3>Evolução de Vendas</h3>
-        <div class="canvas-container">
-          <canvas id="canvasEvolucao"></canvas>
-        </div>
+  <main class="main-content">
+    <header class="topbar">
+      <div>
+        <h1>Dashboard Financeiro</h1>
+        <p class="current-date">Análise visual de vendas e receitas</p>
       </div>
+    </header>
 
-      <div class="chart-card">
-        <h3>Receita por Categoria</h3>
-        <div class="canvas-container">
-          <canvas id="canvasCategorias"></canvas>
+    <div class="panel-body">
+      <div class="charts-grid">
+        
+        <div class="chart-card">
+          <h3>Evolução de Vendas</h3>
+          <div class="canvas-container">
+            <canvas id="canvasEvolucao"></canvas>
+          </div>
         </div>
-      </div>
 
+        <div class="chart-card">
+          <h3>Receita por Categoria</h3>
+          <div class="canvas-container">
+            <canvas id="canvasCategorias"></canvas>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
+  </main>
+  
 </div>
