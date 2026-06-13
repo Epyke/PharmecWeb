@@ -32,32 +32,38 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let emp of listaEmpregados">
-              <td>#{{ emp.idFuncionario || emp.id }}</td>
-              <td class="fw-bold">{{ emp.nome }}</td>
-              <td>{{ emp.username || emp.idutilizador?.username || 'N/A' }}</td>
-              <td>{{ emp.email || emp.idutilizador?.email || 'N/A' }}</td>
-              <td>
-                <span class="status-badge" [class.active]="emp.ativo !== false">
-                  {{ emp.ativo !== false ? 'Ativo' : 'Inativo' }}
-                </span>
-              <td class="actions-cell">
-                <button class="btn-icon edit" routerLink="/empregados/editar/{{ emp.idFuncionario || emp.id }}" title="Editar Empregado">
-                  <img src="icons/pen.svg" alt="Editar">
-                </button>
-                
-                <button *ngIf="emp.ativo !== false" class="btn-icon delete" (click)="apagar(emp.idFuncionario || emp.id, emp.nome)" title="Excluir Empregado">
-                  <img src="icons/trash.svg" alt="Excluir">
-                </button>
+            @if (listaEmpregados.length === 0) {
+              <tr>
+                <td colspan="6" class="text-center empty-state">Nenhum funcionário encontrado.</td>
+              </tr>
+            } 
+            @else {
+              @for (emp of listaEmpregados; track emp.idFuncionario || emp.id) {
+                <tr>
+                  <td>#{{ emp.idFuncionario || emp.id }}</td>
+                  <td class="fw-bold">{{ emp.nome }}</td>
+                  <td>{{ emp.username || emp.idutilizador?.username || 'N/A' }}</td>
+                  <td>{{ emp.email || emp.idutilizador?.email || 'N/A' }}</td>
+                  <td>
+                    <span class="status-badge" [class.active]="emp.ativo !== false">
+                      {{ emp.ativo !== false ? 'Ativo' : 'Inativo' }}
+                    </span>
+                  </td> <td class="actions-cell">
+                    <button class="btn-icon edit" routerLink="/empregados/editar/{{ emp.idFuncionario || emp.id }}" title="Editar Empregado">
+                      <img src="icons/pen.svg" alt="Editar" width="16" height="16">
+                    </button>
+                    
+                    <button *ngIf="emp.ativo !== false" class="btn-icon delete" (click)="apagar(emp.idFuncionario || emp.id, emp.nome)" title="Excluir Empregado">
+                      <img src="icons/trash.svg" alt="Excluir" width="16" height="16">
+                    </button>
 
-                <button *ngIf="emp.ativo === false" class="btn-icon restore" (click)="reativar(emp.idFuncionario || emp.id, emp.nome)" title="Reativar Empregado">
-                  <img src="icons/recycle.svg" alt="Reativar">
-                </button>
-            </tr>
-            
-            <tr *ngIf="listaEmpregados.length === 0">
-              <td colspan="6" class="text-center empty-state">Nenhum funcionário encontrado.</td>
-            </tr>
+                    <button *ngIf="emp.ativo === false" class="btn-icon restore" (click)="reativar(emp.idFuncionario || emp.id, emp.nome)" title="Reativar Empregado">
+                      <img src="icons/recycle.svg" alt="Reativar" width="16" height="16">
+                    </button>
+                  </td>
+                </tr>
+              }
+            }
           </tbody>
         </table>
       </div>
