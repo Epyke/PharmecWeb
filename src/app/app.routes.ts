@@ -17,5 +17,6 @@ export const routes: Routes = [
   { path: 'empregados/editar/:id', component: NovoEmpregadoComponent, canActivate: [roleGuard] },
   { path: 'relatorios', component: RelatoriosComponent, canActivate: [roleGuard] },
   { path: 'graficos-vendas', component: GraficosVendasComponent, canActivate: [roleGuard] },
+  { path: '**', redirectTo: 'login' },
 
 ];

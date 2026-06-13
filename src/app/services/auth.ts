@@ -34,7 +34,7 @@ export class AuthService {
 
           // 4. Abre o Token para ver os detalhes
           const dadosDoToken = this.decodificarToken(response.accessToken);
-          console.log('CONTEÚDO ESCONDIDO NO TOKEN:', dadosDoToken);
+          
 
           // Guarda o Cargo (idcargo)
           if (dadosDoToken && dadosDoToken.idcargo) {
