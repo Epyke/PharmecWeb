@@ -24,12 +24,12 @@
 
         <div class="filter-group">
           <label>Data Início</label>
-          <input type="date" [(ngModel)]="dataInicio" class="form-control">
+          <input type="date" [(ngModel)]="dataInicio" class="form-control" [max]="dataFim ? dataFim : maxTodayDate">
         </div>
 
         <div class="filter-group">
           <label>Data Fim</label>
-          <input type="date" [(ngModel)]="dataFim" class="form-control" [max]="maxTodayDate">
+          <input type="date" [(ngModel)]="dataFim" class="form-control" [max]="maxTodayDate" [min]="dataInicio">
         </div>
 
         <div class="filter-actions">
