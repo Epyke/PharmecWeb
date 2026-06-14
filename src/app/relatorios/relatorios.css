@@ -164,3 +164,13 @@
   .print-header { display: block; margin-bottom: 20px; }
   .report-section { border: none; padding: 0; }
 }
+
+/* Aplica um fundo cinzento ultra suave a todas as linhas pares (2, 4, 6, etc.) */
+.pharmec-table tbody tr:nth-child(even) {
+  background-color: #f8fafc; /* A mesma cor suave que usas no fundo do teu painel */
+}
+
+/* Opcional: Efeito Hover para destacar a linha quando passas o rato por cima */
+.pharmec-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
