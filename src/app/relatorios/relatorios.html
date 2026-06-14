@@ -34,7 +34,8 @@
 
         <div class="filter-actions">
           <button class="btn-primary" (click)="gerarRelatorio()">Gerar</button>
-          <button class="btn-secondary" *ngIf="relatorioGerado" (click)="exportarPDF()">PDF</button>
+          <button class="btn-secondary" *ngIf="relatorioGerado" (click)="imprimir()">Imprimir</button>
+          <button class="btn-secondary" *ngIf="relatorioGerado" (click)="descarregarPDF()">PDF</button>
         </div>
       </div>
 

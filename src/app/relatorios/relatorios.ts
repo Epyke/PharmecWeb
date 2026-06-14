@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { RelatoriosService } from '../services/relatorios';
 import { SidebarComponent } from '../sidebar/sidebar';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-relatorios',
@@ -60,8 +63,56 @@ export class RelatoriosComponent {
     });
   }
 
-  exportarPDF() {
+  imprimir() {
     window.print();
+  }
+
+  descarregarPDF() {
+    // 1. Cria o documento PDF puro (A4, Vertical)
+    const doc = new jsPDF('p', 'mm', 'a4');
+
+    // 2. Adiciona um título bonito ao documento
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.text('Pharmec - Relatório Oficial', 14, 20);
+
+    // Subtítulo com o tipo de relatório
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(12);
+    doc.setTextColor(100);
+    
+    let nomeRelatorio = 'Relatório de Vendas';
+    if (this.tipoRelatorio === 'top-produtos') nomeRelatorio = 'Relatório de Top Produtos';
+    if (this.tipoRelatorio === 'vendas-funcionarios') nomeRelatorio = 'Relatório de Vendas por Funcionário';
+    
+    doc.text(nomeRelatorio, 14, 28);
+
+    // Linha de datas do período
+    const periodo = `Período: ${this.dataInicio ? this.dataInicio : 'Todo o tempo'} a ${this.dataFim ? this.dataFim : 'Todo o tempo'}`;
+    doc.text(periodo, 14, 35);
+
+    // 3. Formatar os teus dados para o formato que o autoTable precisa
+    // O autoTable espera um array de arrays (linhas com os valores das colunas)
+    const linhasDaTabela = this.dados.map(linha => [
+      linha.col1,
+      linha.col2,
+      linha.col3,
+      linha.col4
+    ]);
+
+    // 4. Gerar a tabela automaticamente
+    autoTable(doc, {
+      head: [this.colunas], // Cabeçalho (ex: ['Data', 'Nº Fatura', 'Cliente', 'Total'])
+      body: linhasDaTabela,  // Os dados das linhas
+      startY: 45,            // Onde a tabela começa (abaixo do título)
+      theme: 'striped',      // Estilo de linhas intercaladas (cinzento e branco)
+      headStyles: { fillColor: [40, 167, 69] }, // Cor azul para o cabeçalho (podes mudar para a cor da tua app)
+      styles: { font: 'helvetica', fontSize: 10 },
+      margin: { top: 20, right: 14, bottom: 20, left: 14 }
+    });
+
+    // 5. Faz o download instantâneo!
+    doc.save(`relatorio-${this.tipoRelatorio}-${new Date().toISOString().split('T')[0]}.pdf`);
   }
 
   logout() {
